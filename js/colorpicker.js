@@ -1,13 +1,16 @@
 import listColorsTemp from '../templates/color-card.hbs'
 import colorsData from './colors.json';
 // import './style.css';
+
+
 const paletteContainer = document.querySelector('.js-palette');
 const cardMarkp = listColorsTemp(colorsData);
 paletteContainer.insertAdjacentHTML('beforeend', cardMarkp);
 
 
 paletteContainer.addEventListener('click', OnPaletteContainerClick)
-
+getLocalStorageMessage() 
+    const saveMessage = localStor
 function OnPaletteContainerClick(evn) {
     if (!evn.target.classList.contains('color-swatch')) {
         return
@@ -28,6 +31,7 @@ function OnPaletteContainerClick(evn) {
 }
 function setBodyBgColor(color) {
     document.body.style.background = color
+    localStorage.setItem('backgraund', color)
 }
 function removeActiveCardClass() {
     // шукаємо картку в якої вже є клас .is-active
@@ -41,4 +45,11 @@ function removeActiveCardClass() {
 function addActiveClass(сard) {
     //на цей елемент додаємо клас is-active
     сard.classList.add('is-active') 
+}
+
+function getLocalStorageMessage() {
+    const saveMessage = localStorage.getItem('backgraund')
+    if (saveMessage) {
+       document.body.style.background =  saveMessage
+    }
 }
